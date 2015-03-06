@@ -162,14 +162,20 @@
   //   }); // should be 5, regardless of the iterator function passed in
   //          No accumulator is given so the first element is used.
   _.reduce = function(collection, iterator, accumulator) {
-    var n = collection.length;
-    if (arguments.length < 3) {
-      accumulator = collection[0];
-      n--;
+    // if the collection is an array
+    if (Array.isArray(collection)) {
+      var n = collection.length;
+      if (arguments.length < 3) {
+        accumulator = collection[0];
+        n--;
+      }
+      collection = _.last(collection, n);
     }
-    _.each(_.last(collection, n), function(item) {
+    
+    _.each(collection, function(item) {
       accumulator = iterator(accumulator, item);
     });
+
     return accumulator;
   };
 
