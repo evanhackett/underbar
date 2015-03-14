@@ -38,9 +38,7 @@
   // Like first, but for the last elements. If n is undefined, return just the
   // last element.
   _.last = function(array, n) {
-    if (n > array.length) {
-      return array;
-    }
+    if (n > array.length) return array;
     return n === undefined ? array[array.length - 1] : array.slice(array.length - n, array.length);
   };
 
@@ -82,9 +80,7 @@
   _.filter = function(collection, test) {
     var filtered = [];
     _.each(collection, function(item) {
-      if (test(item)) {
-        filtered.push(item);
-      }
+      if (test(item)) filtered.push(item);
     });
     return filtered;
   };
@@ -94,8 +90,7 @@
     // TIP: see if you can re-use _.filter() here, without simply
     // copying code in and modifying it
     return _.filter(collection, function(item) {
-      if (!test(item)) return true;
-      else return false;
+      return !test(item) ? true : false;
     });
   };
 
